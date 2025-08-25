@@ -1,0 +1,18 @@
+dataset_bg_dir: None
+
+model:
+  in_channels: 1024      # vitl14 features
+  filters: [256, 64, 1]
+  kernel_sizes: [3, 3, 1]
+  strides: [1, 1, 1]
+  norm: null
+  activation: lrelu
+  lang_emb_dim: 1024
+  film_mode: zero
+  film_place: after      
+
+text_embedding: "embeddings_oai"
+
+dino_model_type: "dinov2_vitl14"
+dino_use_registers: false
+torch_home: None

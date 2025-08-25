@@ -20,6 +20,7 @@ This repo contains:
     - [B1K assets](#b1k-assets)
     - [Objaverse assets](#objaverse-assets)
   - [Dataset Curation Pipeline](#dataset-curation-pipeline)
+  - [AGD20K Evaluation](#agd20k-evaluation)
 
 
 ### Environment Setup
@@ -132,4 +133,17 @@ Arguments:
 - ```--use_data_link_segs```: pass in when using Behavior-1K data
 - ```--top_k K```: use the best K views of render in the final dataset for training (default is 3)
 - ```--category_names CATEGORY1 CATEGORY2```: only process certain categories
+
+### AGD20K Evaluation
+To evaluate our trained model on AGD20K Unseen testset, run
+```
+python src/eval_agd.py --config configs/eval_agd.yaml --checkpoint checkpoints/eval_agd.pth --agd_root YOUR_AGD_TESTSET_DIR 
+```
+Arguments:
+- ```--agd_root``` is the path to the Unseen testset. It shall be the parent directory for ```egocentric``` and ```GT```. 
+- ```--viz_dir``` Optional. Pass in to save visualizations of predictions. 
+
+Notes:
+- We additionally report the metric NSS-0.5, which is computed by changing the ground truth binarization threshold to 0.5. Please see Appendix B for details. 
+- This model requires OpenAI language embedding. 
 

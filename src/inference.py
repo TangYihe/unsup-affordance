@@ -35,7 +35,9 @@ class AffordanceInference:
         
         # Load DINO
         torch_home = cfg.get("torch_home", None)
-        self.dino = load_pretrained_dino('dinov2_vits14', use_registers=True, torch_path=torch_home).to(self.device).eval()
+        dino_model_type = cfg.get("dino_model_type", "dinov2_vits14")
+        dino_use_registers = cfg.get("dino_use_registers", True)
+        self.dino = load_pretrained_dino(dino_model_type, use_registers=dino_use_registers, torch_path=torch_home).to(self.device).eval()
 
         self.text_embedding_func = text_embedding_func
     
